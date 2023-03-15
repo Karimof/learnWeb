@@ -1,0 +1,8 @@
+{
+  "generator-jhipster:7.9.3": {
+    "promptValues": {
+      "packageName": "uz.apextech",
+      "nativeLanguage": "uz-Latn-uz"
+    }
+  }
+}
