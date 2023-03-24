@@ -1,0 +1,29 @@
+
+entity Course {
+    name String required
+}
+
+entity Theme {
+    title String required
+}
+
+entity Part {
+    title String required
+    shortCode String
+    fullCode String
+    result String
+    description String
+}
+
+relationship ManyToOne {
+    Theme{course(id)} to Course
+    Part{theme(id)} to Theme
+}
+
+dto * with mapstruct
+
+service * with serviceClass
+
+paginate * with pagination
+
+filter Course, Theme, Part
