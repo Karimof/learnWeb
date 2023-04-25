@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="media">
+      <h2 data-cy="mediaDetailsHeading"><span jhiTranslate="learnWebApp.media.detail.title">Media</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ media.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.media.title">Title</span></dt>
+        <dd>
+          <span>{{ media.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.media.description">Description</span></dt>
+        <dd>
+          <span>{{ media.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.media.photo">Photo</span></dt>
+        <dd>
+          <span>{{ media.photo }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.media.video">Video</span></dt>
+        <dd>
+          <span>{{ media.video }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.media.theme">Theme</span></dt>
+        <dd>
+          <div *ngIf="media.theme">
+            <a [routerLink]="['/theme', media.theme.id, 'view']">{{ media.theme.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Orqaga</span>
+      </button>
+
+      <button type="button" [routerLink]="['/media', media.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">O`zgartir</span>
+      </button>
+    </div>
+  </div>
+</div>

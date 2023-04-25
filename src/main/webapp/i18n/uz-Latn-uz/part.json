@@ -1,0 +1,34 @@
+{
+  "learnWebApp": {
+    "part": {
+      "home": {
+        "title": "Parts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Part qo`shish",
+        "createOrEditLabel": "Partni tahrirlash",
+        "notFound": "No Parts found"
+      },
+      "created": "Part {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Part saqlandi",
+      "deleted": "{{ param }}- Part o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Partni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Part"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "question": "Question",
+      "codeTitle": "Code Title",
+      "codeDescription": "Code Description",
+      "code": "Code",
+      "fullCode": "Full Code",
+      "result": "Result",
+      "additional": "Additional",
+      "theme": "Theme",
+      "media": "Media"
+    }
+  }
+}

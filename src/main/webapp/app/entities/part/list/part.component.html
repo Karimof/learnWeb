@@ -1,0 +1,176 @@
+<div>
+  <h2 id="page-heading" data-cy="PartHeading">
+    <span jhiTranslate="learnWebApp.part.home.title">Parts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="learnWebApp.part.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-part"
+        [routerLink]="['/part/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="learnWebApp.part.home.createLabel"> Yangi Part qo`shish </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="parts?.length === 0">
+    <span jhiTranslate="learnWebApp.part.home.notFound">No Parts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="parts && parts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="question">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.question">Question</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeTitle">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.codeTitle">Code Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeDescription">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.codeDescription">Code Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="code">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.code">Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fullCode">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.fullCode">Full Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="result">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.result">Result</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="additional">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.additional">Additional</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="theme.id">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.theme">Theme</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="media.id">
+            <div class="d-flex">
+              <span jhiTranslate="learnWebApp.part.media">Media</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let part of parts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/part', part.id, 'view']">{{ part.id }}</a>
+          </td>
+          <td>{{ part.title }}</td>
+          <td>{{ part.description }}</td>
+          <td>{{ part.question }}</td>
+          <td>{{ part.codeTitle }}</td>
+          <td>{{ part.codeDescription }}</td>
+          <td>{{ part.code }}</td>
+          <td>{{ part.fullCode }}</td>
+          <td>{{ part.result }}</td>
+          <td>{{ part.additional }}</td>
+          <td>
+            <div *ngIf="part.theme">
+              <a [routerLink]="['/theme', part.theme.id, 'view']">{{ part.theme.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="part.media">
+              <a [routerLink]="['/media', part.media.id, 'view']">{{ part.media.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/part', part.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Ko`rish</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/part', part.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">O`zgartir</span>
+              </button>
+
+              <button type="submit" (click)="delete(part)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">O`chir</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="parts && parts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

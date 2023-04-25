@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="part">
+      <h2 data-cy="partDetailsHeading"><span jhiTranslate="learnWebApp.part.detail.title">Part</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ part.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.title">Title</span></dt>
+        <dd>
+          <span>{{ part.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.description">Description</span></dt>
+        <dd>
+          <span>{{ part.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.question">Question</span></dt>
+        <dd>
+          <span>{{ part.question }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.codeTitle">Code Title</span></dt>
+        <dd>
+          <span>{{ part.codeTitle }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.codeDescription">Code Description</span></dt>
+        <dd>
+          <span>{{ part.codeDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.code">Code</span></dt>
+        <dd>
+          <span>{{ part.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.fullCode">Full Code</span></dt>
+        <dd>
+          <span>{{ part.fullCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.result">Result</span></dt>
+        <dd>
+          <span>{{ part.result }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.additional">Additional</span></dt>
+        <dd>
+          <span>{{ part.additional }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.theme">Theme</span></dt>
+        <dd>
+          <div *ngIf="part.theme">
+            <a [routerLink]="['/theme', part.theme.id, 'view']">{{ part.theme.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="learnWebApp.part.media">Media</span></dt>
+        <dd>
+          <div *ngIf="part.media">
+            <a [routerLink]="['/media', part.media.id, 'view']">{{ part.media.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Orqaga</span>
+      </button>
+
+      <button type="button" [routerLink]="['/part', part.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">O`zgartir</span>
+      </button>
+    </div>
+  </div>
+</div>

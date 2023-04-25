@@ -1,6 +1,6 @@
 
 entity Course {
-    name String required
+    name String required unique
 }
 
 entity Theme {
@@ -9,15 +9,28 @@ entity Theme {
 
 entity Part {
     title String required
-    shortCode String
-    fullCode String
-    result String
-    description String
+    description String maxlength(5000)
+    question String maxlength(1000)
+    codeTitle String maxlength(1000)
+    codeDescription String maxlength(3000)
+    code String maxlength(3000)
+    fullCode String maxlength(5000)
+    result String maxlength(1000)
+    additional String maxlength(3000)
+}
+
+entity Media {
+    title String maxlength(1000)
+    description String maxlength(3000)
+    photo String maxlength(512)
+    video String maxlength(512)
 }
 
 relationship ManyToOne {
     Theme{course(id)} to Course
+    Media{theme(id)} to Theme
     Part{theme(id)} to Theme
+    Part{media(id)} to Media
 }
 
 dto * with mapstruct

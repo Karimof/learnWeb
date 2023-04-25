@@ -1,0 +1,25 @@
+{
+  "learnWebApp": {
+    "theme": {
+      "home": {
+        "title": "Themes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Theme qo`shish",
+        "createOrEditLabel": "Themeni tahrirlash",
+        "notFound": "No Themes found"
+      },
+      "created": "Theme {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Theme saqlandi",
+      "deleted": "{{ param }}- Theme o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Themeni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Theme"
+      },
+      "id": "ID",
+      "title": "Title",
+      "course": "Course"
+    }
+  }
+}

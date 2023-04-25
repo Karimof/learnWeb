@@ -1,0 +1,28 @@
+{
+  "learnWebApp": {
+    "media": {
+      "home": {
+        "title": "Media",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Media qo`shish",
+        "createOrEditLabel": "Mediani tahrirlash",
+        "notFound": "No Media found"
+      },
+      "created": "Media {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Media saqlandi",
+      "deleted": "{{ param }}- Media o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Mediani o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Media"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "photo": "Photo",
+      "video": "Video",
+      "theme": "Theme"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-part-heading" data-cy="PartCreateUpdateHeading" jhiTranslate="learnWebApp.part.home.createOrEditLabel">
+        Partni tahrirlash
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.title" for="field_title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+          <div *ngIf="editForm.get('title')!.invalid && (editForm.get('title')!.dirty || editForm.get('title')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('title')?.errors?.required" jhiTranslate="entity.validation.required">
+              To`ldirish zarur
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('description')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5000 }"
+            >
+              Ko`pi bilan 5000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.question" for="field_question">Question</label>
+          <input type="text" class="form-control" name="question" id="field_question" data-cy="question" formControlName="question" />
+          <div *ngIf="editForm.get('question')!.invalid && (editForm.get('question')!.dirty || editForm.get('question')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('question')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 1000 }"
+            >
+              Ko`pi bilan 1000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.codeTitle" for="field_codeTitle">Code Title</label>
+          <input type="text" class="form-control" name="codeTitle" id="field_codeTitle" data-cy="codeTitle" formControlName="codeTitle" />
+          <div *ngIf="editForm.get('codeTitle')!.invalid && (editForm.get('codeTitle')!.dirty || editForm.get('codeTitle')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeTitle')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 1000 }"
+            >
+              Ko`pi bilan 1000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.codeDescription" for="field_codeDescription">Code Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeDescription"
+            id="field_codeDescription"
+            data-cy="codeDescription"
+            formControlName="codeDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeDescription')!.invalid &&
+              (editForm.get('codeDescription')!.dirty || editForm.get('codeDescription')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeDescription')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 3000 }"
+            >
+              Ko`pi bilan 3000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('code')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 3000 }"
+            >
+              Ko`pi bilan 3000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.fullCode" for="field_fullCode">Full Code</label>
+          <input type="text" class="form-control" name="fullCode" id="field_fullCode" data-cy="fullCode" formControlName="fullCode" />
+          <div *ngIf="editForm.get('fullCode')!.invalid && (editForm.get('fullCode')!.dirty || editForm.get('fullCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fullCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5000 }"
+            >
+              Ko`pi bilan 5000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.result" for="field_result">Result</label>
+          <input type="text" class="form-control" name="result" id="field_result" data-cy="result" formControlName="result" />
+          <div *ngIf="editForm.get('result')!.invalid && (editForm.get('result')!.dirty || editForm.get('result')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('result')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 1000 }"
+            >
+              Ko`pi bilan 1000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.additional" for="field_additional">Additional</label>
+          <input
+            type="text"
+            class="form-control"
+            name="additional"
+            id="field_additional"
+            data-cy="additional"
+            formControlName="additional"
+          />
+          <div *ngIf="editForm.get('additional')!.invalid && (editForm.get('additional')!.dirty || editForm.get('additional')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('additional')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 3000 }"
+            >
+              Ko`pi bilan 3000ta bo`lsin.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.theme" for="field_theme">Theme</label>
+          <select class="form-control" id="field_theme" data-cy="theme" name="theme" formControlName="theme" [compareWith]="compareTheme">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="themeOption" *ngFor="let themeOption of themesSharedCollection">{{ themeOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="learnWebApp.part.media" for="field_media">Media</label>
+          <select class="form-control" id="field_media" data-cy="media" name="media" formControlName="media" [compareWith]="compareMedia">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="mediaOption" *ngFor="let mediaOption of mediaSharedCollection">{{ mediaOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Bekor</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Saqla</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
