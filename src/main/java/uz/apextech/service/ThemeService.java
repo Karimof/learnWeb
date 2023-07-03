@@ -1,6 +1,8 @@
 package uz.apextech.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -86,6 +88,10 @@ public class ThemeService {
     public Page<ThemeDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Themes");
         return themeRepository.findAll(pageable).map(themeMapper::toDto);
+    }
+
+    public List<ThemeDTO> findSubThemeById(Long themeId) {
+        return themeRepository.findAllBySubmenuId(themeId).stream().map(themeMapper::toDto).collect(Collectors.toList());
     }
 
     /**

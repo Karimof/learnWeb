@@ -143,15 +143,27 @@ public class Media implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "Media{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", video='" + getVideo() + "'" +
-            "}";
+        return (
+            "Media{" +
+            "id=" +
+            id +
+            ", title='" +
+            title +
+            '\'' +
+            ", description='" +
+            description +
+            '\'' +
+            ", photo='" +
+            photo +
+            '\'' +
+            ", video='" +
+            video +
+            '\'' +
+            ", theme=" +
+            theme +
+            '}'
+        );
     }
 }

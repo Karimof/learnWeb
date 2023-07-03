@@ -60,12 +60,28 @@ public class Part implements Serializable {
     @Column(name = "additional", length = 3000)
     private String additional;
 
+    @Column(name = "submenuId")
+    private Long submenuId;
+
+    @Column(name = "sub_submenu_id")
+    private Long subSubmenuId;
+
+    @Column(name = "belong_to_subsub")
+    private Long belongToSubsub;
+
+    @Column(name = "presentation")
+    private String presentation;
+
+    @Column(name = "test")
+    private String test;
+
+    @Column(name = "crossword")
+    private String crossword;
+
     @ManyToOne
-    @JsonIgnoreProperties(value = { "course" }, allowSetters = true)
     private Theme theme;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "theme" }, allowSetters = true)
     private Media media;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -226,6 +242,54 @@ public class Part implements Serializable {
         return this;
     }
 
+    public Long getSubmenuId() {
+        return submenuId;
+    }
+
+    public void setSubmenuId(Long submenuId) {
+        this.submenuId = submenuId;
+    }
+
+    public Long getSubSubmenuId() {
+        return subSubmenuId;
+    }
+
+    public void setSubSubmenuId(Long subSubmenuId) {
+        this.subSubmenuId = subSubmenuId;
+    }
+
+    public Long getBelongToSubsub() {
+        return belongToSubsub;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public String getCrossword() {
+        return crossword;
+    }
+
+    public void setCrossword(String crossword) {
+        this.crossword = crossword;
+    }
+
+    public void setBelongToSubsub(Long belongToSubsub) {
+        this.belongToSubsub = belongToSubsub;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -245,20 +309,59 @@ public class Part implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "Part{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", question='" + getQuestion() + "'" +
-            ", codeTitle='" + getCodeTitle() + "'" +
-            ", codeDescription='" + getCodeDescription() + "'" +
-            ", code='" + getCode() + "'" +
-            ", fullCode='" + getFullCode() + "'" +
-            ", result='" + getResult() + "'" +
-            ", additional='" + getAdditional() + "'" +
-            "}";
+        return (
+            "Part{" +
+            "id=" +
+            id +
+            ", title='" +
+            title +
+            '\'' +
+            ", description='" +
+            description +
+            '\'' +
+            ", question='" +
+            question +
+            '\'' +
+            ", codeTitle='" +
+            codeTitle +
+            '\'' +
+            ", codeDescription='" +
+            codeDescription +
+            '\'' +
+            ", code='" +
+            code +
+            '\'' +
+            ", fullCode='" +
+            fullCode +
+            '\'' +
+            ", result='" +
+            result +
+            '\'' +
+            ", additional='" +
+            additional +
+            '\'' +
+            ", submenuId=" +
+            submenuId +
+            ", subSubmenuId=" +
+            subSubmenuId +
+            ", belongToSubsub=" +
+            belongToSubsub +
+            ", presentation='" +
+            presentation +
+            '\'' +
+            ", test='" +
+            test +
+            '\'' +
+            ", crossword='" +
+            crossword +
+            '\'' +
+            ", theme=" +
+            theme +
+            ", media=" +
+            media +
+            '}'
+        );
     }
 }

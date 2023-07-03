@@ -17,6 +17,8 @@ public class ThemeDTO implements Serializable {
 
     private CourseDTO course;
 
+    private Long submenuId;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +43,14 @@ public class ThemeDTO implements Serializable {
         this.course = course;
     }
 
+    public Long getSubmenuId() {
+        return submenuId;
+    }
+
+    public void setSubmenuId(Long submenuId) {
+        this.submenuId = submenuId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,13 +72,8 @@ public class ThemeDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "ThemeDTO{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", course=" + getCourse() +
-            "}";
+        return "ThemeDTO{" + "id=" + id + ", title='" + title + '\'' + ", course=" + course + ", submenuId=" + submenuId + '}';
     }
 }

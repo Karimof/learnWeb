@@ -13,8 +13,8 @@ import uz.apextech.service.dto.ThemeDTO;
  */
 @Mapper(componentModel = "spring")
 public interface PartMapper extends EntityMapper<PartDTO, Part> {
-    @Mapping(target = "theme", source = "theme", qualifiedByName = "themeId")
-    @Mapping(target = "media", source = "media", qualifiedByName = "mediaId")
+    @Mapping(target = "theme", source = "theme")
+    @Mapping(target = "media", source = "media")
     PartDTO toDto(Part s);
 
     @Named("themeId")

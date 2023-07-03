@@ -75,7 +75,7 @@ public class PartResource {
     /**
      * {@code PUT  /parts/:id} : Updates an existing part.
      *
-     * @param id the id of the partDTO to save.
+     * @param id      the id of the partDTO to save.
      * @param partDTO the partDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated partDTO,
      * or with status {@code 400 (Bad Request)} if the partDTO is not valid,
@@ -109,7 +109,7 @@ public class PartResource {
     /**
      * {@code PATCH  /parts/:id} : Partial updates given fields of an existing part, field will ignore if it is null
      *
-     * @param id the id of the partDTO to save.
+     * @param id      the id of the partDTO to save.
      * @param partDTO the partDTO to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated partDTO,
      * or with status {@code 400 (Bad Request)} if the partDTO is not valid,
@@ -168,6 +168,25 @@ public class PartResource {
         return ResponseEntity.ok(parts);
     }
 
+    @GetMapping("/part/submenuId/{submenuId}")
+    public ResponseEntity<List<PartDTO>> getPartsSubMenu(@PathVariable Long submenuId) {
+        log.debug("REST request to get Part by submenuId : {}", submenuId);
+        List<PartDTO> parts = partService.findBySubmenuId(submenuId);
+        return ResponseEntity.ok(parts);
+    }
+
+    @GetMapping("/part/subSubmenu")
+    public ResponseEntity<List<PartDTO>> getPartsSubSubMenu(@RequestParam Long submenuId, @RequestParam Long subSubmenuId) {
+        log.debug("REST request to get Part by submenuId : {}", submenuId);
+        List<PartDTO> parts = partService.findBySubSubmenuId(submenuId, subSubmenuId);
+        return ResponseEntity.ok(parts);
+    }
+
+    @GetMapping("/part/byType")
+    public ResponseEntity<List<PartDTO>> getPartsByType(@RequestParam Long themeId, @RequestParam Long submenuId) {
+        List<PartDTO> parts = partService.findByType(themeId, submenuId);
+        return ResponseEntity.ok(parts);
+    }
 
     /**
      * {@code GET  /parts/count} : count all the parts.

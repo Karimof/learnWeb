@@ -43,6 +43,15 @@ public class PartDTO implements Serializable {
 
     private MediaDTO media;
 
+    private Long submenuId;
+
+    private Long subSubmenuId;
+
+    private Long belongToSubsub;
+    private String presentation;
+    private String test;
+    private String crossword;
+
     public Long getId() {
         return id;
     }
@@ -139,6 +148,54 @@ public class PartDTO implements Serializable {
         this.media = media;
     }
 
+    public Long getSubmenuId() {
+        return submenuId;
+    }
+
+    public void setSubmenuId(Long submenuId) {
+        this.submenuId = submenuId;
+    }
+
+    public Long getSubSubmenuId() {
+        return subSubmenuId;
+    }
+
+    public void setSubSubmenuId(Long subSubmenuId) {
+        this.subSubmenuId = subSubmenuId;
+    }
+
+    public Long getBelongToSubsub() {
+        return belongToSubsub;
+    }
+
+    public void setBelongToSubsub(Long belongToSubsub) {
+        this.belongToSubsub = belongToSubsub;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public String getCrossword() {
+        return crossword;
+    }
+
+    public void setCrossword(String crossword) {
+        this.crossword = crossword;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -174,6 +231,12 @@ public class PartDTO implements Serializable {
             ", fullCode='" + getFullCode() + "'" +
             ", result='" + getResult() + "'" +
             ", additional='" + getAdditional() + "'" +
+            ", submenuId='" + getSubmenuId() + "'" +
+            ", subSubmenuId='" + getSubSubmenuId() + "'" +
+            ", belongToSubsub='" + getBelongToSubsub() + "'" +
+            ", presentation='" + getPresentation() + "'" +
+            ", test='" + getTest() + "'" +
+            ", crossword='" + getCrossword() + "'" +
             ", theme=" + getTheme() +
             ", media=" + getMedia() +
             "}";

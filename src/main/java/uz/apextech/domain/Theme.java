@@ -30,6 +30,9 @@ public class Theme implements Serializable {
     @ManyToOne
     private Course course;
 
+    @Column(name = "submenu_id")
+    private Long submenuId;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -71,6 +74,14 @@ public class Theme implements Serializable {
         return this;
     }
 
+    public Long getSubmenuId() {
+        return submenuId;
+    }
+
+    public void setSubmenuId(Long submenuId) {
+        this.submenuId = submenuId;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -90,12 +101,8 @@ public class Theme implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "Theme{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            "}";
+        return "Theme{" + "id=" + id + ", title='" + title + '\'' + ", course=" + course + ", submenuId=" + submenuId + '}';
     }
 }

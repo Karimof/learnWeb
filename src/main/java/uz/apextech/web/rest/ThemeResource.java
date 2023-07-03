@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +24,7 @@ import uz.apextech.repository.ThemeRepository;
 import uz.apextech.service.ThemeQueryService;
 import uz.apextech.service.ThemeService;
 import uz.apextech.service.criteria.ThemeCriteria;
+import uz.apextech.service.dto.PartDTO;
 import uz.apextech.service.dto.ThemeDTO;
 import uz.apextech.service.mapper.ThemeMapper;
 import uz.apextech.web.rest.errors.BadRequestAlertException;
@@ -51,10 +51,12 @@ public class ThemeResource {
 
     private final ThemeMapper themeMapper;
 
-    public ThemeResource(ThemeService themeService,
-                         ThemeRepository themeRepository,
-                         ThemeQueryService themeQueryService,
-                         ThemeMapper themeMapper) {
+    public ThemeResource(
+        ThemeService themeService,
+        ThemeRepository themeRepository,
+        ThemeQueryService themeQueryService,
+        ThemeMapper themeMapper
+    ) {
         this.themeService = themeService;
         this.themeRepository = themeRepository;
         this.themeQueryService = themeQueryService;
@@ -126,7 +128,7 @@ public class ThemeResource {
      * or with status {@code 500 (Internal Server Error)} if the themeDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/themes/{id}", consumes = {"application/json", "application/merge-patch+json"})
+    @PatchMapping(value = "/themes/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<ThemeDTO> partialUpdateTheme(
         @PathVariable(value = "id", required = false) final Long id,
         @NotNull @RequestBody ThemeDTO themeDTO
@@ -170,11 +172,9 @@ public class ThemeResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @CrossOrigin("http://localhost:5738/")
     @GetMapping("/themes/sorted")
     public ResponseEntity<Map<Long, List<ThemeDTO>>> getThemes() {
-        List<ThemeDTO> list = themeRepository.findAll().stream()
-            .map(themeMapper::toDto).collect(Collectors.toList());
+        List<ThemeDTO> list = themeRepository.findAllBySubmenuIdIsNull().stream().map(themeMapper::toDto).collect(Collectors.toList());
         Map<Long, List<ThemeDTO>> themeMap = list.stream().collect(Collectors.groupingBy(ThemeDTO::getId));
         return ResponseEntity.ok().body(themeMap);
     }
@@ -202,6 +202,13 @@ public class ThemeResource {
         log.debug("REST request to get Theme : {}", id);
         Optional<ThemeDTO> themeDTO = themeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(themeDTO);
+    }
+
+    @GetMapping("/themes/sub/{themeId}")
+    public ResponseEntity<List<ThemeDTO>> getPartBySubmenuId(@PathVariable Long themeId) {
+        log.debug("REST request to get subTheme by themeId : {}", themeId);
+        List<ThemeDTO> themes = themeService.findSubThemeById(themeId);
+        return ResponseEntity.ok(themes);
     }
 
     /**

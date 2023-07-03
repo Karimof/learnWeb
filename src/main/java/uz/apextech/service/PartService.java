@@ -3,7 +3,6 @@ package uz.apextech.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -93,11 +92,40 @@ public class PartService {
     }
 
     public List<PartDTO> findAllByTheme(Long themeId) {
-        return partRepository.findAllByThemeId(themeId).stream().sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
+        return partRepository
+            .findAllByThemeId(themeId)
+            .stream()
+            .sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
             .map(partMapper::toDto)
             .collect(Collectors.toList());
     }
 
+    public List<PartDTO> findBySubmenuId(Long submenuId) {
+        return partRepository
+            .findAllBySubmenuIdAndBelongToSubsubIsNull(submenuId)
+            .stream()
+            .sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
+            .map(partMapper::toDto)
+            .collect(Collectors.toList());
+    }
+
+    public List<PartDTO> findBySubSubmenuId(Long submenuId, Long subSubmenuId) {
+        return partRepository
+            .findAllBySubmenuIdAndSubSubmenuIdAndBelongToSubsub(submenuId, subSubmenuId, subSubmenuId)
+            .stream()
+            .sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
+            .map(partMapper::toDto)
+            .collect(Collectors.toList());
+    }
+
+    public List<PartDTO> findByType(Long themeId, Long submenuId) {
+        return partRepository
+            .findAllByThemeIdAndSubmenuIdAndBelongToSubsubIsNotNull(themeId, submenuId)
+            .stream()
+            .sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
+            .map(partMapper::toDto)
+            .collect(Collectors.toList());
+    }
 
     /**
      * Get one part by id.
